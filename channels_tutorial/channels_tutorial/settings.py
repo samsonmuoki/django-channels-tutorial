@@ -70,7 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'channels_tutorial.wsgi.application'
 
-ASGI_APPLICATION = "myproject.routing.application"
+ASGI_APPLICATION = "channels_tutorial.routing.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
