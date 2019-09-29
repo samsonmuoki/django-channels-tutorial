@@ -7,26 +7,30 @@
   tasks:
     - name: make continous deployment to server
       git:
-              repo: 'https://github.com/samsonmuoki/Django-PollsApp.git'
-              dest: muoki/
-    # - name: installing requirements
-    #   pip:
-    #     requirements: /home/sam/muoki/pollsapp/requirements.txt
-    #     virtualenv: /home/sam/muoki/venv
-    #     virtualenv_python: python3.6
-
-
+              repo: 'https://github.com/samsonmuoki/django-channels-tutorial.git'
+              dest: chat_app/
 
     - name: activate venv and make migrations
       shell: |
-        . /home/sam/muoki/venv/bin/activate
-        pip3 install -r /home/sam/muoki/pollsapp/requirements.txt
-        python3 /home/sam/muoki/pollsapp/manage.py migrate
+        . /home/sam/chat_app/venv/bin/activate
+        pip3 install -r /home/sam/chat_app/main_requirements.txt
+        python3 /home/sam/chat_app/manage.py migrate
     
     - name: start gunicorn
       shell: |
-        . /home/sam/muoki/venv/bin/activate
-        cd /home/sam/muoki/pollsapp
-        gunicorn --daemon --workers 3 --bind unix:/home/sam/muoki/pollsapp/pollsapp.sock pollsapp.wsgi
+        . /home/sam/chat_app/venv/bin/activate
+        cd /home/sam/chat_app
+        gunicorn --daemon --workers 3 --bind unix:/home/sam/chat_app/channels_tutorial/chatapp.sock chatapp.wsgi
           
 
+    # - name: shutdown redis-server
+    #   shell: redis-cli shutdown
+
+    # - name: start redis-server with docker
+    #   shell: |
+    #     sudo docker run -p 6379:6379 -d redis:2.8
+
+    - name: start server
+      shell: |
+        cd /home/sam/chat_app/channels_tutorial
+        python3 manage.py runserver

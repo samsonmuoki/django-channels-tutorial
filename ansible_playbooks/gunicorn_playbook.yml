@@ -10,7 +10,17 @@
             shell: |
               . /home/sam/chat_app/venv/bin/activate
               cd /home/sam/chat_app
-              gunicorn --daemon --workers 3 --bind unix:/home/sam/chat_app/chatapp.sock pollsapp.wsgi
+              gunicorn --daemon --workers 3 --bind unix:/home/sam/chat_app/channels_tutorial/channels_tutorial.sock channels_tutorial.wsgi
             
-          
 
+          # - name: shutdown redis-server
+          #   shell: redis-cli shutdown
+
+          # - name: start redis-server with docker
+          #   shell: |
+          #     sudo docker run -p 6379:6379 -d redis:2.8
+
+          # - name: start server
+          #   shell: |
+          #     cd /home/sam/chat_app/channels_tutorial
+          #     python3 manage.py runserver
