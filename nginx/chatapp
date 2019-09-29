@@ -1,0 +1,16 @@
+server {
+    listen [::]:80 default_server;
+    listen 80 default_server;
+    # server_name muokichat.duckdns.org www.muokichat.duckdns.org;
+    server_name muokichat.duckdns.org www.muokichat.duckdns.org;
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location /static/ {
+            root /home/sam/chat_app/channels_tutorial;
+    }
+
+    location / {
+            include proxy_params;
+            proxy_pass http://unix:/home/sam/chat_app/channels_tutorial/chatapp.sock;
+    }
+}
