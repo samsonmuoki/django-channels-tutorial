@@ -1,0 +1,18 @@
+---
+- hosts: all
+  remote_user: root
+  become: yes
+  gather_facts: True
+
+  tasks:
+    - name: Include initialization playbook
+      include: initialization_playbook.yml
+
+    - name: Include nginx playbook
+      include: nginx_playbook.yml
+
+    - name: include gunicorn playbook
+      include: gunicorn_playbook.yml
+
+    - name: include lets encrypt playbook
+      include: letsencrypt_playbook.yml

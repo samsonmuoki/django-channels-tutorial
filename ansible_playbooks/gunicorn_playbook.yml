@@ -1,0 +1,16 @@
+---
+- hosts: all
+  remote_user: root
+  become: yes
+  gather_facts: True
+
+  tasks:            
+          
+          - name: start gunicorn
+            shell: |
+              . /home/sam/chat_app/venv/bin/activate
+              cd /home/sam/chat_app
+              gunicorn --daemon --workers 3 --bind unix:/home/sam/chat_app/chatapp.sock pollsapp.wsgi
+            
+          
+
