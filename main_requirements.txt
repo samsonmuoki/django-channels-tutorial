@@ -1,3 +1,7 @@
+ansible==2.8.5
 Django==2.2.5
 channels==2.3.0
 channels-redis==2.4.0
+tox==3.14.0
+Fabric3==1.14.post1
+coverage==4.5.4
