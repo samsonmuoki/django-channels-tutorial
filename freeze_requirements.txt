@@ -17,6 +17,7 @@ daphne==2.3.0
 Django==2.2.5
 Fabric3==1.14.post1
 filelock==3.0.12
+gunicorn==19.9.0
 hiredis==1.0.0
 hyperlink==19.0.0
 idna==2.8
